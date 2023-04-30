@@ -1,27 +1,27 @@
 #A graphing calculator written in c.
 This application is an ASCII graphing calculator written from scratch.
 
-    To run the application through the terminal (preferred), use the "calculator" command
+To run the application through the terminal (preferred), use the "calculator" command
 in the source directory. If you're using VSCode to run the program, open the source directory
 and use "./calculator". 
 
 IMPORTANT:
-    Make sure that the font size in the terminal is set to the smallest possible size
+Make sure that the font size in the terminal is set to the smallest possible size
 that still allows you to read the text comfortably, and make sure your terminal is set to fullscreen
 mode. This is so that the graphing function appears on your screen properly.
-    I have included the msys-2.0.dll, which should be the only requirement to run this program
+I have included the msys-2.0.dll, which should be the only requirement to run this program
 as a c makefile through the terminal based on trial runs. If any problem is encountered, please
-e-mail me at younes.adam23@reavisd220.org, or samakmashwee@gmail.com.
+e-mail me at samakmashwee@gmail.com.
 
-    Once the program is successfully running, you will be prompted to type with a
+Once the program is successfully running, you will be prompted to type with a
 "$ " indicator, any time you see this indicator, the program is accepting input.
 
-    Input can be accepted in one of two formats:
-        1. a mathematical expression.
-        2. one of the preset commands for the calculator. (If you would like to know
-        more about how to use the calculator, run "/help" after starting the program).
+Input can be accepted in one of two formats:
+    1. a mathematical expression.
+    2. one of the preset commands for the calculator. (If you would like to know
+    more about how to use the calculator, run "/help" after starting the program).
 
-    To end the calculator program properly, run the command "/quit", this will save
+To end the calculator program properly, run the command "/quit", this will save
 all data to the functions file and the window data file, so that when you run the calculator
 again, you'll be all set!
 
@@ -58,20 +58,20 @@ LIMITATIONS:
 
 Here's some information about the process of making the calculator!
 
-    The calculator initially started with the vision of making a graphing calculator
+The calculator initially started with the vision of making a graphing calculator
 that runs in the terminal, with an ASCII display. This was initially inspired by other
 ASCII displays that rendered real-time graphics in 3d and 2d. I saw this, and attempted
 to implement a similar system in the context of an (x, y) plane.
 
-    The implementation starts with what is essentially an array of pixels, defined by
+The implementation starts with what is essentially an array of pixels, defined by
 an x and y coordinate, as well as a single character that would hold what the pixel
 actually looks like. This array is what the program uses as the main graphing display.
 One of the problems with this method of ASCII pixelization is that it looks absolutely
 horrible because each character on the screen takes up so much room.
 
-    To illustrate this problem, I will use the function x^2 as an example.
+To illustrate this problem, I will use the function x^2 as an example.
     
-    Initially, the graphing calculator would output the function y = x^2 like this:
+Initially, the graphing calculator would output the function y = x^2 like this:
 
         
                                 #        |        #
@@ -82,31 +82,31 @@ horrible because each character on the screen takes up so much room.
                                          |
                                          |
 
-    Here, you can see that when the y coordinate of any given pixel matched the output
+Here, you can see that when the y coordinate of any given pixel matched the output
 of the function, that pixel would simply display a '#'. While this isn't entirely unre-
 -cognizeable as the desired function, it is still clearly ugly and could be a lot better
 when it comes to proper function visualization.
 
-    So, clearly, more accuracy was needed, and to achieve this, I had to look at where
+So, clearly, more accuracy was needed, and to achieve this, I had to look at where
 the problem lay, which was in the fact that character slots on a computer are taller than
 they are wide. This can be inferred because we see multiple hashtags next to each other,
 where one should be slightly above the other if the function was completely accurate.
-    To rectify this, I had to figure out a way to artificially inflate the resolution of 
+To rectify this, I had to figure out a way to artificially inflate the resolution of 
 the display without actually increasing the number of pixels, and here is where the 
 the flexibility of ASCII art offered a potential solution. Instead of setting each pixel's
 display to the character that fills the most space, a more gradual and refined line 
 could be achieved using characters that take up different places within their character 
 slot.
 
-    For instance, when we take a look at the characters "." and "-" side by side, one
+For instance, when we take a look at the characters "." and "-" side by side, one
 is slightly higher than the other. We can utilize this to increase the vertical resolution
 of the graphing calculator!
-    In order to do this, we need sort of a palette of characters that indicate a gradual
+In order to do this, we need sort of a palette of characters that indicate a gradual
 change in y value as opposed to a harsh one. For this palette, the calculator uses the
 string "_,.-~*'`". After a little testing and studying ASCII art, I learned that these 
 characters were some of the most commonly used in drawing gradual lines.
 
-    After implementing this system of artificially raising the vertical resolution, the
+After implementing this system of artificially raising the vertical resolution, the
 results speak for themselves. Here is the same function x^2 graphed with the new system:
 
                                 ~        |        ~
@@ -117,32 +117,32 @@ results speak for themselves. Here is the same function x^2 graphed with the new
                                          |
                                          |
 
-    Not only does this fix the accuracy problem, it also has the added bonus of that
+Not only does this fix the accuracy problem, it also has the added bonus of that
 ASCII art charm that this program was inspired by in the first place!
 
-    To start, I created "graph.h", initially as "graph.c", and only included the 
+To start, I created "graph.h", initially as "graph.c", and only included the 
 graphing functionality in the program. On runtime, the program would print out the
 graph of a preset function. The only problem with this was that you would have to
 change the source code of the program to get it to change the function that it would
 graph. I had initially minimized this source code alteration by making the function
 that contained the equation separate from everything else, but I still didn't like it.
 
-    I settled on accepting user input for the equation that would be graphed so that
+I settled on accepting user input for the equation that would be graphed so that
 changing the function that was graphed would be easy. The problem then made itself clear.
 I would have to accept user input in the form of a mathematical expression written in 
 mathematical notation and somehow transform that into an output given the values of x
 on the (x, y) plane. 
-    Research revealed that solving this problem was going to be more difficult than I'd
+Research revealed that solving this problem was going to be more difficult than I'd
 initially anticipated, because of the fact that the way humans write and evaluate 
 mathematical expressions are very different from the process that computers take to 
 writing and evaluating things. For instance, complex expressions like x^(2x+4) are very
 easy for someone like you and me to evaluate given the value of x, but for a computer to
 look at the same expression and give a result, a few steps must be taken first.
-    This is what the file "parser.h" does. Initially, the expression must be converted 
+This is what the file "parser.h" does. Initially, the expression must be converted 
 into a form that is easy for a computer to evaluate. One of these formats is called 
 Reverse Polish Notation (RPN), or more simply, postfix notation.
 
-    To define postfix notation, let's take a look at the way that people write expressions,
+To define postfix notation, let's take a look at the way that people write expressions,
 using the example x^(2x+4), this is called infix notation, where the operands are on either
 side of an operator. Postfix notation, on the other hand, is when both operands precede the
 operator. So x+2 becomes x2+, and our example of x^(2x+4) becomes x2x*4+^. Notice how the 
@@ -151,14 +151,14 @@ because the implied multiplication symbol between 2 and x must come after the tw
 meaning it must be explicitly written. Also notice how postfix notation does not use
 parentheses; this is important, as parentheses are a big time sink when it comes to 
 performing fast text processing like we want. 
-    So the first step becomes converting infix notation to postfix notation, which is the 
+So the first step becomes converting infix notation to postfix notation, which is the 
 notation that is far easier to evaluate using code. To do this, each individual token must
 be identified in the original notation. The way I chose to do this is similar to the way
 that games handle such problems... A state machine! By looping through the original 
 string and changing the state of the parser, we can make it perform different actions 
 depending on what kind of character it's looking at. 
 
-    Using the state machine in conjunction with a stack, we can convert infix notation to
+Using the state machine in conjunction with a stack, we can convert infix notation to
 postfix notation through the following process:
 
     1. if the current character is an operand, push it to the output.
@@ -169,19 +169,19 @@ postfix notation through the following process:
     4. if the current character is a close parenthesis, push the top of the stack to the 
     output until an open parenthesis is reached.
 
-    Through this process, otherwise known as the shunting-yard algorithm, infix notation is
+Through this process, otherwise known as the shunting-yard algorithm, infix notation is
 converted to postfix notation. A similar process can be taken to incorporate trig functionality.
 
-    After this, we have a string that represents an expression in syntax that is incredibly
+After this, we have a string that represents an expression in syntax that is incredibly
 easy to evaluate given the value of x!
 
-    Notice how this process of converting plain text into processable data is similar to the
+Notice how this process of converting plain text into processable data is similar to the
 process that compilers execute... That's because what we've effectively done is create a 
 mathematical expression compiler! With this newfound limitless power, we can conquer the world.
 
-    Okay, not really... But what we can do is finally make a working graphing calculator!!!!!
+Okay, not really... But what we can do is finally make a working graphing calculator!!!!!
 
-    "calculator.c" is the file that ties in all of the functionality of the parser and graphing
+"calculator.c" is the file that ties in all of the functionality of the parser and graphing
 portions, while at the same time expanding on both.
 
     It is in this file that I incorporated concepts from calculus, enabling the calculator to
