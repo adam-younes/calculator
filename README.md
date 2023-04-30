@@ -1,4 +1,5 @@
-#A graphing calculator written in c.#
+A graphing calculator written in c.
+
 This application is an ASCII graphing calculator written from scratch.
 
 To run the application through the terminal (preferred), use the "calculator" command
