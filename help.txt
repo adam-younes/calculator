@@ -1,0 +1,35 @@
+usage: ./calculator
+
+    key:
+        [] denotes a default value.
+        <> denotes an optional command.
+
+    general usage syntax:
+        The calculation functionality is constantly running. When prompted
+        with "$ ", the calculator is accepting general input. Input that is
+        not a command should be in the form of standard mathematical notation.
+
+        general syntactic rules:
+            Trig functions and log() are followed by an open and close parenthesis.
+            (eg. log(x), sin(x^2), cos(sin(x)), etc...)
+
+            The general order of operations applies, so properly parenthesized expressions
+            are necessary to achieve accurate outputs.
+
+    commands during runtime:
+        /help                           displays this message.
+        /base <expression>              changes the current log base. [10]
+        /fadd <expression>              adds a function to the first open slot in the function table.
+        /fremove <index>                removes the function at the given index from the function table.
+        /xval <expression>              changes the current value of x for general calculations. [0]
+        /ftable                         outputs the current function table (functions stored in the function table are used
+                                for graphing purposes.) [x^2, (empty), (empty), ...]
+        /fclear                         clears the current function table.
+        /window                         displays the window bounds for the graph display and prompts changes.
+        /graph <expression>             draws ascii display with every equation in the function table graphed.
+        /integrate <expression>         prompts selection of a function from the function table, integrates under that
+                                function between prompted lower and upper bounds, and outputs the definite integral as well
+                                as the ascii display with the area shaded.
+        /graphdx <expression>           draws ascii display with every equation in the function table's derivative graphed.
+        /quit                           saves the current states of the function table and window bounds, exits the program.
+
