@@ -27,37 +27,40 @@ all data to the functions file and the window data file, so that when you run th
 again, you'll be all set!
 
 LIMITATIONS:
-    The program has a few limitations, as it is made completely from scratch...
+The program has a few limitations, as it is made completely from scratch...
 
-    FIRST: The largest limitation by far is floating point imprecision. This can be 
-    apparent when it comes to complex expressions in the general calculator functionality,
-    but is most present when it comes to the integration functionality. The area under 
-    the curve will always be slightly inaccurate, although it will be very close to 
-    the actual answer. This was largely minimized through the use of (long double) Instead
-    of (float) or (double), but it, unfortunately, cannot be counteracted.
+#### FIRST:
+The largest limitation by far is floating point imprecision. This can be 
+apparent when it comes to complex expressions in the general calculator functionality,
+but is most present when it comes to the integration functionality. The area under 
+the curve will always be slightly inaccurate, although it will be very close to 
+the actual answer. This was largely minimized through the use of (long double) Instead
+of (float) or (double), but it, unfortunately, cannot be counteracted.
 
-    SECOND: The calculator functions as intended regardless of your terminal settings.
-    However, there are inherent limitations when it comes to the use of ASCII as the display
-    method. While this was intentionally done as a method of stylization, it still makes it so
-    that the terminal must be at least as wide as the width of the graphing display. The default
-    graphing display width is 200 characters, so as long as the font size of the terminal is
-    small enough such that it can fit 200 characters in a row, there will be no problem.
+#### SECOND:
+The calculator functions as intended regardless of your terminal settings.
+However, there are inherent limitations when it comes to the use of ASCII as the display
+method. While this was intentionally done as a method of stylization, it still makes it so
+that the terminal must be at least as wide as the width of the graphing display. The default
+graphing display width is 200 characters, so as long as the font size of the terminal is
+small enough such that it can fit 200 characters in a row, there will be no problem.
 
-    THIRD: There is one edge case in the parser that has eluded every debugging effort.
-    For some unholy reason, the entire parser breaks if an expression starts with something
-    in parentheses and is followed by anything. like (x)2, (23)x, or (23)+x. So just
-    umm, don't do that. It's a feature.
+#### THIRD: 
+There is one edge case in the parser that has eluded every debugging effort.
+For some unholy reason, the entire parser breaks if an expression starts with something
+in parentheses and is followed by anything. like (x)2, (23)x, or (23)+x. So just
+umm, don't do that. It's a feature.
 
-    FOURTH: Undefined/error handling. There is a very rudimentary error-handling system in 
-    place, however, this does not cover the integration between outputs that don't exist.
-    so if, for instance, you are integrating under log(x), inputting a lower bound of anything
-    less than or equal to 0 will end the program with a segmentation fault, this is because
-    it is impossible to integrate between 0 and anything under log(x). This also applies to
-    functions with holes and other functions with vertical asymptotes. 
+#### FOURTH:
+There is a very rudimentary error-handling system in place, however, this does not cover 
+the integration between outputs that don't exist. so if, for instance, you are integrating 
+under log(x), inputting a lower bound of anything less than or equal to 0 will end the 
+program with a segmentation fault, this is because it is impossible to integrate
+between 0 and anything under log(x). This also applies to functions with holes and other 
+functions with vertical asymptotes. 
 
 
-
-Here's some information about the process of making the calculator!
+### Here's some information about the process of making the calculator!
 
 The calculator initially started with the vision of making a graphing calculator
 that runs in the terminal, with an ASCII display. This was initially inspired by other
@@ -75,13 +78,13 @@ To illustrate this problem, I will use the function x^2 as an example.
 Initially, the graphing calculator would output the function y = x^2 like this:
 
         
-                                #        |        #
-                                 #       |       #
-                                  ##     |     ##
-                                    ##   |   ##
---------------------------------------#######---------------------------------------
-                                         |
-                                         |
+                                    #        |        #
+                                     #       |       #
+                                      ##     |     ##
+                                        ##   |   ##
+    --------------------------------------#######---------------------------------------
+                                             |
+                                             |
 
 Here, you can see that when the y coordinate of any given pixel matched the output
 of the function, that pixel would simply display a '#'. While this isn't entirely unre-
@@ -104,19 +107,19 @@ is slightly higher than the other. We can utilize this to increase the vertical 
 of the graphing calculator!
 In order to do this, we need sort of a palette of characters that indicate a gradual
 change in y value as opposed to a harsh one. For this palette, the calculator uses the
-string "_,.-~*'`". After a little testing and studying ASCII art, I learned that these 
-characters were some of the most commonly used in drawing gradual lines.
+string "_,.-~*'\`". (After a little testing and studying ASCII art, I learned that these 
+characters were some of the most commonly used in drawing gradual lines.)
 
 After implementing this system of artificially raising the vertical resolution, the
 results speak for themselves. Here is the same function x^2 graphed with the new system:
 
-                                ~        |        ~
-                                 *       |       *
-                                  `.     |     .`
-                                    '.   |   .'
---------------------------------------`*~-~*`---------------------------------------
-                                         |
-                                         |
+                                    ~        |        ~
+                                     *       |       *
+                                      `.     |     .`
+                                        '.   |   .'
+    --------------------------------------`*~-~*`---------------------------------------
+                                             |
+                                             |
 
 Not only does this fix the accuracy problem, it also has the added bonus of that
 ASCII art charm that this program was inspired by in the first place!
@@ -170,7 +173,7 @@ postfix notation through the following process:
     4. if the current character is a close parenthesis, push the top of the stack to the 
     output until an open parenthesis is reached.
 
-Through this process, otherwise known as the shunting-yard algorithm, infix notation is
+Through this process, otherwise known as the **shunting-yard algorithm**, infix notation is
 converted to postfix notation. A similar process can be taken to incorporate trig functionality.
 
 After this, we have a string that represents an expression in syntax that is incredibly
@@ -185,7 +188,7 @@ Okay, not really... But what we can do is finally make a working graphing calcul
 "calculator.c" is the file that ties in all of the functionality of the parser and graphing
 portions, while at the same time expanding on both.
 
-    It is in this file that I incorporated concepts from calculus, enabling the calculator to
+It is in this file that I incorporated concepts from calculus, enabling the calculator to
 graph the derivative of any given function, as well as integrate under any given curve between
 two bounds. These functionalities both use their formal definitions in calculus as a 
 framework for their implementations in c.
