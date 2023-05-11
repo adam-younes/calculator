@@ -1,12 +1,12 @@
-A graphing calculator written in c.
+# calculator.c
 
-This application is an ASCII graphing calculator written from scratch.
+### This application is an ASCII graphing calculator written from scratch.
 
 To run the application through the terminal (preferred), use the "calculator" command
 in the source directory. If you're using VSCode to run the program, open the source directory
 and use "./calculator". 
 
-IMPORTANT:
+### IMPORTANT
 Make sure that the font size in the terminal is set to the smallest possible size
 that still allows you to read the text comfortably, and make sure your terminal is set to fullscreen
 mode. This is so that the graphing function appears on your screen properly.
