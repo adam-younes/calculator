@@ -26,7 +26,9 @@ To end the calculator program properly, run the command "/quit", this will save
 all data to the functions file and the window data file, so that when you run the calculator
 again, you'll be all set!
 
-LIMITATIONS:
+___
+
+### LIMITATIONS
 The program has a few limitations, as it is made completely from scratch...
 
 #### FIRST:
@@ -59,6 +61,7 @@ program with a segmentation fault, this is because it is impossible to integrate
 between 0 and anything under log(x). This also applies to functions with holes and other 
 functions with vertical asymptotes. 
 
+___
 
 ### Here's some information about the process of making the calculator!
 
