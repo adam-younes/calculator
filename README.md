@@ -10,7 +10,7 @@ and use "./calculator".
 Make sure that the font size in the terminal is set to the smallest possible size
 that still allows you to read the text comfortably, and make sure your terminal is set to fullscreen
 mode. This is so that the graphing function appears on your screen properly.
-I have included the msys-2.0.dll, which should be the only requirement to run this program
+I have not included the msys-2.0.dll, which should be the only requirement to run this program
 as a c makefile through the terminal based on trial runs. If any problem is encountered, please
 e-mail me at samakmashwee@gmail.com.
 
