@@ -2,9 +2,9 @@
 
 ### This application is an ASCII graphing calculator written from scratch.
 
-To run the application through the terminal (preferred), use the "calculator" command
-in the source directory. If you're using VSCode to run the program, open the source directory
-and use "./calculator". 
+To run the application through the terminal (preferred), compile the program using a C compiler
+of your choice and use the "calculator" command in the source directory. If you're using VSCode
+to run the program, open the source directory and use "./calculator". 
 
 ### IMPORTANT
 Make sure that the font size in the terminal is set to the smallest possible size
